@@ -15,7 +15,6 @@ class DisplayMovies extends Component {
             nomFour: null,
             nomFive: null,
             allNoms: null,
-            maxNoms: false,
             alreadyExists: false
         }
         this.handleNomChange = this.handleNomChange.bind(this);
@@ -27,10 +26,7 @@ class DisplayMovies extends Component {
     }
 
     componentDidUpdate() {
-        if (search === this.props.searchTerm) {
-            // TODO add index to nomIndexes for cleaner view
-        }
-        else {
+        if (search !== this.props.searchTerm) {
             search = this.props.searchTerm;
             nomIndexes = [];
         }
@@ -72,13 +68,11 @@ class DisplayMovies extends Component {
             nomIndexes.push(event.target.id);
         }
         else {
-            this.setState({ maxNoms: true });
             this.setState({ alreadyExists: false });
         }
     }
 
     handleNomRemove(event) {
-
         let tempQuery; // was having issues comparing query so came up with an alternative edit: Definitely not fool-proof so need to fix
         let tempSearch;
 
@@ -91,11 +85,9 @@ class DisplayMovies extends Component {
                 }
                 this.setState({ nomOne: null });
                 nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-                this.setState({ maxNoms: false });
             } else {
                 this.setState({ nomOne: null });
                 nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-                this.setState({ maxNoms: false });
             }
         }
         else if (this.state.nomTwo && event.target.value === this.state.nomTwo.key) {
@@ -107,11 +99,9 @@ class DisplayMovies extends Component {
                 }
                 this.setState({ nomTwo: null });
                 nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-                this.setState({ maxNoms: false });
             } else {
                 this.setState({ nomTwo: null });
                 nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-                this.setState({ maxNoms: false });
             }
         }
         else if (this.state.nomThree && event.target.value === this.state.nomThree.key) {
@@ -123,11 +113,9 @@ class DisplayMovies extends Component {
                 }
                 this.setState({ nomThree: null });
                 nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-                this.setState({ maxNoms: false });
             } else {
                 this.setState({ nomThree: null });
                 nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-                this.setState({ maxNoms: false });
             }
         }
         else if (this.state.nomFour && event.target.value === this.state.nomFour.key) {
@@ -139,11 +127,9 @@ class DisplayMovies extends Component {
                 }
                 this.setState({ nomFour: null });
                 nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-                this.setState({ maxNoms: false });
             } else {
                 this.setState({ nomFour: null });
                 nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-                this.setState({ maxNoms: false });
             }
         }
         else if (this.state.nomFive && event.target.value === this.state.nomFive.key) {
@@ -155,11 +141,9 @@ class DisplayMovies extends Component {
                 }
                 this.setState({ nomFive: null });
                 nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-                this.setState({ maxNoms: false });
             } else {
                 this.setState({ nomFive: null });
                 nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-                this.setState({ maxNoms: false });
             }
         }
         this.setState({ alreadyExists: false });
@@ -172,9 +156,9 @@ class DisplayMovies extends Component {
 
                     <div class="card pt-2 pl-2 pr-2 card-set-width">
                         <div class="card-body">
-                            {!this.state.maxNoms ? null : <div class="alert alert-info" role="alert">
+                            {this.state.nomOne && this.state.nomTwo && this.state.nomThree && this.state.nomFour && this.state.nomFive ? <div class="alert alert-info" role="alert">
                                 Nominations limit reached (Max 5)
-                            </div>}
+                            </div> : null}
                             {!this.state.alreadyExists ? null : <div class="alert alert-info" role="alert">
                                 Nomination already exists
                             </div>}
