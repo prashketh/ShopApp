@@ -28,81 +28,41 @@ class DisplayMovies extends Component {
 
     componentDidUpdate() {
         if (search === this.props.searchTerm) {
-            // do nothing
+            // TODO add index to nomIndexes for cleaner view
         }
         else {
             search = this.props.searchTerm;
             nomIndexes = [];
-            if (this.state.nomOne) {
-                this.setState(prevState => ({  
-                    nomOne: {
-                        ...prevState.nomOne,
-                        index: null,
-                    }
-                }));
-            }
-            if (this.state.nomTwo) {
-                this.setState(prevState => ({  
-                    nomTwo: {
-                        ...prevState.nomTwo,
-                        index: null,
-                    }
-                }));
-            }
-            if (this.state.nomThree) {
-                this.setState(prevState => ({ 
-                    nomThree: {
-                        ...prevState.nomThree,
-                        index: null,
-                    }
-                }));
-            }
-            if (this.state.nomFour) {
-                this.setState(prevState => ({  
-                    nomFour: {
-                        ...prevState.nomFour,
-                        index: null,
-                    }
-                }));
-            }
-            if (this.state.nomFive) {
-                this.setState(prevState => ({  
-                    nomFive: {
-                        ...prevState.nomFive,
-                        index: null,
-                    }
-                }));
-            }
         }
     }
 
     handleNomChange(event) {
         if (!this.state.nomOne && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomOne: { key: event.target.value, index: event.target.id } });
+            this.setState({ nomOne: { key: event.target.value, index: event.target.id, query: search } });
             nomIndexes.push(event.target.id);
             nomMovies.push(event.target.value);
             this.setState({ alreadyExists: false });
         }
         else if (!this.state.nomTwo && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomTwo: { key: event.target.value, index: event.target.id } });
+            this.setState({ nomTwo: { key: event.target.value, index: event.target.id, query: search } });
             nomIndexes.push(event.target.id);
             nomMovies.push(event.target.value);
             this.setState({ alreadyExists: false });
         }
         else if (!this.state.nomThree && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomThree: { key: event.target.value, index: event.target.id } });
+            this.setState({ nomThree: { key: event.target.value, index: event.target.id, query: search } });
             nomIndexes.push(event.target.id);
             nomMovies.push(event.target.value);
             this.setState({ alreadyExists: false });
         }
         else if (!this.state.nomFour && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomFour: { key: event.target.value, index: event.target.id } });
+            this.setState({ nomFour: { key: event.target.value, index: event.target.id, query: search } });
             nomIndexes.push(event.target.id);
             nomMovies.push(event.target.value);
             this.setState({ alreadyExists: false });
         }
         else if (!this.state.nomFive && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomFive: { key: event.target.value, index: event.target.id } });
+            this.setState({ nomFive: { key: event.target.value, index: event.target.id, query: search } });
             nomIndexes.push(event.target.id);
             nomMovies.push(event.target.value);
             this.setState({ alreadyExists: false });
@@ -118,46 +78,91 @@ class DisplayMovies extends Component {
     }
 
     handleNomRemove(event) {
+
+        let tempQuery;
+        let tempSearch;
+
         if (this.state.nomOne && event.target.value === this.state.nomOne.key) {
-            if (nomIndexes.indexOf(this.state.nomOne.index) != -1) {
-                nomIndexes.splice(nomIndexes.indexOf(this.state.nomOne.index), 1);
+            tempQuery = this.state.nomOne.query.length.toString();
+            tempSearch = search.length.toString();
+            if (search.includes(this.state.nomOne.query) && tempSearch.includes(tempQuery)) {
+                if (nomIndexes.indexOf(this.state.nomOne.index) > -1) {
+                    nomIndexes.splice(nomIndexes.indexOf(this.state.nomOne.index), 1);
+                }
+                this.setState({ nomOne: null });
+                nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
+                this.setState({ maxNoms: false });
+            } else {
+                this.setState({ nomOne: null });
+                nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
+                this.setState({ maxNoms: false });
             }
-            this.setState({ nomOne: null });
-            nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-            this.setState({ maxNoms: false });
         }
         else if (this.state.nomTwo && event.target.value === this.state.nomTwo.key) {
-            if (nomIndexes.indexOf(this.state.nomTwo.index) != -1) {
-                nomIndexes.splice(nomIndexes.indexOf(this.state.nomTwo.index), 1);
+            tempQuery = this.state.nomTwo.query.length.toString();
+            tempSearch = search.length.toString();
+            if (search === this.state.nomTwo.query && tempSearch.includes(tempQuery)) {
+                if (nomIndexes.indexOf(this.state.nomTwo.index) > -1) {
+                    nomIndexes.splice(nomIndexes.indexOf(this.state.nomTwo.index), 1);
+                }
+                this.setState({ nomTwo: null });
+                nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
+                this.setState({ maxNoms: false });
+            } else {
+                this.setState({ nomTwo: null });
+                nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
+                this.setState({ maxNoms: false });
             }
-            this.setState({ nomTwo: null });
-            nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-            this.setState({ maxNoms: false });
         }
         else if (this.state.nomThree && event.target.value === this.state.nomThree.key) {
-            if (nomIndexes.indexOf(this.state.nomThree.index) != -1) {
-                nomIndexes.splice(nomIndexes.indexOf(this.state.nomThree.index), 1);
+            tempQuery = this.state.nomThree.query.length.toString();
+            tempSearch = search.length.toString();
+            if (search === this.state.nomThree.query && tempSearch.includes(tempQuery)) {
+                if (nomIndexes.indexOf(this.state.nomThree.index) > -1) {
+                    nomIndexes.splice(nomIndexes.indexOf(this.state.nomThree.index), 1);
+                }
+                this.setState({ nomThree: null });
+                nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
+                this.setState({ maxNoms: false });
+            } else {
+                this.setState({ nomThree: null });
+                nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
+                this.setState({ maxNoms: false });
             }
-            this.setState({ nomThree: null });
-            nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-            this.setState({ maxNoms: false });
         }
         else if (this.state.nomFour && event.target.value === this.state.nomFour.key) {
-            if (nomIndexes.indexOf(this.state.nomFour.index) != -1) {
-                nomIndexes.splice(nomIndexes.indexOf(this.state.nomFour.index), 1);
+            tempQuery = this.state.nomFour.query.length.toString();
+            tempSearch = search.length.toString();
+            if (search === this.state.nomFour.query && tempSearch.includes(tempQuery)) {
+                if (nomIndexes.indexOf(this.state.nomFour.index) > -1) {
+                    nomIndexes.splice(nomIndexes.indexOf(this.state.nomFour.index), 1);
+                }
+                this.setState({ nomFour: null });
+                nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
+                this.setState({ maxNoms: false });
+            } else {
+                this.setState({ nomFour: null });
+                nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
+                this.setState({ maxNoms: false });
             }
-            this.setState({ nomFour: null });
-            nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-            this.setState({ maxNoms: false });
         }
         else if (this.state.nomFive && event.target.value === this.state.nomFive.key) {
-            if (nomIndexes.indexOf(this.state.nomFive.index) != -1) {
-                nomIndexes.splice(nomIndexes.indexOf(this.state.nomFive.index), 1);
+            tempQuery = this.state.nomFive.query.length.toString();
+            tempSearch = search.length.toString();
+            if (search === this.state.nomFive.query && tempSearch.includes(tempQuery)) {
+                if (nomIndexes.indexOf(this.state.nomFive.index) > -1) {
+                    nomIndexes.splice(nomIndexes.indexOf(this.state.nomFive.index), 1);
+                }
+                this.setState({ nomFive: null });
+                nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
+                this.setState({ maxNoms: false });
+            } else {
+                this.setState({ nomFive: null });
+                nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
+                this.setState({ maxNoms: false });
             }
-            this.setState({ nomFive: null });
-            nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
-            this.setState({ maxNoms: false });
         }
+        this.setState({ alreadyExists: false });
     }
 
     render() {
