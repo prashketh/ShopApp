@@ -79,7 +79,7 @@ class DisplayMovies extends Component {
 
     handleNomRemove(event) {
 
-        let tempQuery;
+        let tempQuery; // was having issues comparing query so came up with an alternative edit: Definitely not fool-proof so need to fix
         let tempSearch;
 
         if (this.state.nomOne && event.target.value === this.state.nomOne.key) {
