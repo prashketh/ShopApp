@@ -9,7 +9,6 @@ let search;
 /*
     similar searches
     when u leave page make the nominations unavailable
-    move blue banners under nominations
 */
 
 class DisplayMovies extends Component {
