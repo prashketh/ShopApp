@@ -12,6 +12,7 @@ to clear all nominations.
 - React
 - JavaScript
 - HTML and CSS
+- Bootstrap
 
 ## Create React App
 
