@@ -58,7 +58,7 @@ class SearchBar extends Component {
     submit(e) {
         e.preventDefault(); // prevents the refresh on key enter
         this.changeFinalTerm();
-        fetch(`http://www.omdbapi.com/?s=${this.state.searchTerm}&apikey=${APIkey}`)
+        fetch(`https://www.omdbapi.com/?s=${this.state.searchTerm}&apikey=${APIkey}`)
             .then(resp => resp.json())
             .then(response => {
                 this.setState({ movies: null });
