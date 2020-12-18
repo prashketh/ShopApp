@@ -40,12 +40,13 @@ class SearchBar extends Component {
                     </div>
                     <div class="input-group pt-2 pl-3 pr-3">
                         <div class="input-group-prepend">
-                            <label class="input-group-text">Search</label>
+                            {/* <label class="input-group-text">Search</label> */}
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
                         </div>
                         <input type="text" class="form-control" placeholder="" value={this.state.value} onChange={this.handleChange} />
                     </div>
                     <div class="pl-3 pt-2 pb-3 pr-3">
-                        <small>Press ENTER to search</small>
+                        <small>Press ENTER or click the search button to find a movie</small>
                     </div>
                 </form>
                 <div class="d-flex flex-row pt-2 change-width">

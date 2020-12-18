@@ -5,8 +5,19 @@ let nomIndexes = [];
 let nomMovies = [];
 let search;
 
+// TODO 
+/*
+    similar searches
+    when u leave page make the nominations unavailable
+    move blue banners under nominations
+*/
+
 class DisplayMovies extends Component {
     constructor(props) {
+
+        var today = new Date(),
+            date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
         super(props);
         this.state = {
             nomOne: null,
@@ -15,10 +26,13 @@ class DisplayMovies extends Component {
             nomFour: null,
             nomFive: null,
             allNoms: null,
-            alreadyExists: false
+            alreadyExists: false,
+            currentDateTime: date,
+            showPoster: false,
         }
         this.handleNomChange = this.handleNomChange.bind(this);
         this.handleNomRemove = this.handleNomRemove.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
     }
 
     componentDidMount() {
@@ -149,58 +163,88 @@ class DisplayMovies extends Component {
         this.setState({ alreadyExists: false });
     }
 
+    handleToggle() {
+        this.setState({ showPoster: !this.state.showPoster });
+        console.log("This is " + this.state.showPoster);
+    }
+
     render() {
         return (
             <React.Fragment>
-                <div class="d-flex flex-row">
-
-                    <div class="card pt-2 pl-2 pr-2 card-set-width">
-                        <div class="card-body">
-                            {this.state.nomOne && this.state.nomTwo && this.state.nomThree && this.state.nomFour && this.state.nomFive ? <div class="alert alert-info" role="alert">
-                                Nominations limit reached (Max 5)
-                            </div> : null}
-                            {!this.state.alreadyExists ? null : <div class="alert alert-info" role="alert">
-                                Nomination already exists
-                            </div>}
-                            <h5 class="card-title">{this.props.searchTerm ? 'Results for "' + this.props.searchTerm + '"' : "Nothing has been searched yet..."}</h5>
-                            <ul class="list-group">
-                                {this.props.movies ? this.props.movies.map(
-                                    (movie, index) =>
-                                        nomIndexes.includes(index.toString()) ?
-                                            <li class="list-group-item list-group-item-light" key={movie.Title}>
-                                                <form class="d-flex flex-column m-1">
-                                                    <p>{movie.Title} ({movie.Year})</p>
-                                                    <button type="button" class="btn btn-secondary btn-set-width" disabled={true}>Nominate</button>
-                                                </form>
-                                            </li> :
-                                            <li class="list-group-item list-group-item-light" key={movie.Title}>
-                                                <form class="d-flex flex-column m-1">
-                                                    <p>{movie.Title} ({movie.Year})</p>
-                                                    <button type="button" class="btn btn-secondary btn-set-width" id={index} value={movie.Title + " (" + movie.Year + ")"} onClick={this.handleNomChange}>Nominate</button>
-                                                </form>
-                                            </li>
-                                ) : null}
-                            </ul>
+                <div class="d-flex flex-column">
+                    <div class="card mb-2 pt-1">
+                        <div class="d-flex justify-content-around">
+                            <div class="m-2">
+                                <h5>Today: {this.state.currentDateTime}</h5>
+                            </div>
+                            <div class="custom-control custom-switch m-2">
+                                <input type="checkbox" class="custom-control-input" id="switchPoster" onChange={this.handleToggle} />
+                                <label class="custom-control-label switch-align" for="switchPoster">Show posters</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="pl-2">
-                        <div class="d-flex flex-row">
-                            <div class="card pt-2 pl-2 pr-2 card-set-width">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nominations</h5>
-                                    <ul class="list-group">
-                                        {[this.state.nomOne, this.state.nomTwo, this.state.nomThree, this.state.nomFour, this.state.nomFive] ? [this.state.nomOne, this.state.nomTwo, this.state.nomThree, this.state.nomFour, this.state.nomFive].map(
-                                            (nom) =>
-                                                nom ?
-                                                    <li class="list-group-item list-group-item-light">
-                                                        <form class="d-flex flex-column m-1">
-                                                            <p>{nom.key}</p>
-                                                            <button type="button" class="btn btn-secondary btn-set-width" value={nom.key} onClick={this.handleNomRemove}>Remove</button>
-                                                        </form>
-                                                    </li>
-                                                    : null
-                                        ) : null}
-                                    </ul>
+                    <div class="d-flex flex-row">
+
+                        <div class="card pt-2 pl-2 pr-2 card-set-width">
+                            <div class="card-body">
+                                <div class="d-flex flex-row">
+                                    <div>
+                                        <h5 class="card-title">{this.props.searchTerm ? 'Results for "' + this.props.searchTerm + '"' : "Results"}</h5>
+                                    </div>
+                                </div>
+                                <ul class="list-group">
+                                    {this.props.movies ? this.props.movies.map(
+                                        (movie, index) => 
+                                            nomIndexes.includes(index.toString()) ?
+                                                <li class="list-group-item list-group-item-light" key={movie.Title}>
+                                                    <form class="d-flex flex-column m-1">
+                                                        <h6>{movie.Title} ({movie.Year})</h6>
+                                                        {this.state.showPoster ? <img src={movie.Poster} /> : null}
+                                                        <button type="button" class="btn btn-secondary btn-set-width mt-2" disabled={true}>Nominate</button>
+                                                    </form>
+                                                </li> :
+                                                <li class="list-group-item list-group-item-light" key={movie.Title}>
+                                                    <form class="d-flex flex-column m-1">
+                                                        <h6>{movie.Title} ({movie.Year})</h6>
+                                                        {this.state.showPoster ? <img src={movie.Poster} /> : null}
+                                                        <button type="button" class="btn btn-secondary btn-set-width mt-2" id={index} value={movie.Title + " (" + movie.Year + ")"} onClick={this.handleNomChange}>Nominate</button>
+                                                    </form>
+                                                </li>
+                                    ) :
+                                        <li class="list-group-item list-group-item-light">
+                                            No results
+                                        </li> 
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pl-2">
+                            <div class="d-flex flex-row">
+                                <div class="card pt-2 pl-2 pr-2 card-set-width">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Nominations (Top 5)</h5>
+                                        {this.state.nomOne && this.state.nomTwo && this.state.nomThree && this.state.nomFour && this.state.nomFive ? <div class="alert alert-info" role="alert">
+                                            Nominations limit reached (Max 5)
+                            </div> : null}
+                                        {!this.state.alreadyExists ? null : <div class="alert alert-info" role="alert">
+                                            Nomination already exists
+                            </div>}
+                                        <ul class="list-group">
+                                            {[this.state.nomOne, this.state.nomTwo, this.state.nomThree, this.state.nomFour, this.state.nomFive] ? [this.state.nomOne, this.state.nomTwo, this.state.nomThree, this.state.nomFour, this.state.nomFive].map(
+                                                (nom) =>
+                                                    nom ?
+                                                        <li class="list-group-item list-group-item-light">
+                                                            <form class="d-flex flex-column m-1">
+                                                                <p>{nom.key}</p>
+                                                                <button type="button" class="btn btn-secondary btn-set-width" value={nom.key} onClick={this.handleNomRemove}>Remove</button>
+                                                            </form>
+                                                        </li>
+                                                        : <li class="list-group-item list-group-item-light">
+                                                            Choose a movie
+                                                </li>
+                                            ) : null}
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>

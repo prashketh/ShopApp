@@ -6,3 +6,8 @@
 .card-set-width {
     width: 23.74rem;
 }
+
+.switch-align {
+    float: right !important;
+    right: 10% !important;
+}
