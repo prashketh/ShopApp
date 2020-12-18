@@ -38,7 +38,6 @@ class SearchBar extends Component {
                     </div>
                     <div class="input-group pt-2 pl-3 pr-3">
                         <div class="input-group-prepend">
-                            {/* <label class="input-group-text">Search</label> */}
                             <button class="btn btn-outline-secondary" type="submit">Search</button>
                         </div>
                         <input type="text" class="form-control" placeholder="" value={this.state.value} onChange={this.handleChange} />
