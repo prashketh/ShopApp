@@ -7,6 +7,12 @@ In terms of additional features made, I implemented the search feature to work b
 clicking the dedicated Search button. Also created a switch that allows users to view the posters of the movies under the Results list. Also created the ability 
 to clear all nominations.
 
+## Tech/framework used
+
+- React
+- JavaScript
+- HTML and CSS
+
 ## Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
