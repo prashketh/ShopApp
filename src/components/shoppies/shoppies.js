@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Nav } from 'react-bootstrap';
-import ReactDOM from 'react-dom';
 import './shoppies.css'
 import DisplayMovies from '../displayMovies/displayMovies';
 
