@@ -157,9 +157,6 @@ class DisplayMovies extends Component {
                 <div class="d-flex flex-column">
                     <div class="card mb-2 pt-1">
                         <div class="d-flex justify-content-around">
-                            <div class="m-2 p-1">
-                                <h5>Today: {this.state.currentDateTime}</h5>
-                            </div>
                             <div class="custom-control custom-switch m-2 p-1">
                                 <input type="checkbox" class="custom-control-input" id="switchPoster" onChange={this.handleToggle} />
                                 <label class="custom-control-label switch-align" for="switchPoster">Show posters</label>
