@@ -29,12 +29,12 @@ class DisplayMovies extends Component {
     }
 
     componentDidMount() {
-        search = this.props.searchTerm;
+        search = this.props.lowerCaseSearch;
     }
 
     componentDidUpdate() {
-        if (search !== this.props.searchTerm) {
-            search = this.props.searchTerm;
+        if (search !== this.props.lowerCaseSearch) {
+            search = this.props.lowerCaseSearch;
             nomIndexes = [];
         }
     }
@@ -86,7 +86,7 @@ class DisplayMovies extends Component {
         if (this.state.nomOne && event.target.value === this.state.nomOne.key) {
             tempQuery = this.state.nomOne.query.length.toString();
             tempSearch = search.length.toString();
-            if (search.includes(this.state.nomOne.query) && tempSearch.includes(tempQuery)) {
+            if (search === this.state.nomOne.query && tempSearch.includes(tempQuery)) {
                 if (nomIndexes.indexOf(this.state.nomOne.index) > -1) {
                     nomIndexes.splice(nomIndexes.indexOf(this.state.nomOne.index), 1);
                 }
