@@ -161,7 +161,7 @@ class DisplayMovies extends Component {
                                 <input type="checkbox" class="custom-control-input" id="switchPoster" onChange={this.handleToggle} />
                                 <label class="custom-control-label switch-align" for="switchPoster">Show posters</label>
                             </div>
-                            <div class="mt-1 mr-2 mb-2 p-1">
+                            <div class="m-2 p-1">
                                 <button type="button" class="btn btn-outline-secondary" onClick={this.handleClearNoms}>Clear all nominations</button>
                             </div>
                         </div>
