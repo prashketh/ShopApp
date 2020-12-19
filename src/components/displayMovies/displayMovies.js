@@ -8,9 +8,6 @@ let search;
 class DisplayMovies extends Component {
     constructor(props) {
 
-        var today = new Date(),
-            date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
         super(props);
         this.state = {
             nomOne: null,
@@ -19,7 +16,6 @@ class DisplayMovies extends Component {
             nomFour: null,
             nomFive: null,
             alreadyExists: false,
-            currentDateTime: date,
             showPoster: false,
         }
         this.handleNomChange = this.handleNomChange.bind(this);
@@ -157,7 +153,10 @@ class DisplayMovies extends Component {
                 <div class="d-flex flex-column">
                     <div class="card mb-2 pt-1">
                         <div class="d-flex justify-content-around">
-                            <div class="custom-control custom-switch m-2 p-1">
+                            <div class="m-2 p-1">
+                                <h5>Options:</h5>
+                            </div>
+                            <div class="custom-control custom-switch m-2 p-2">
                                 <input type="checkbox" class="custom-control-input" id="switchPoster" onChange={this.handleToggle} />
                                 <label class="custom-control-label switch-align" for="switchPoster">Show posters</label>
                             </div>
