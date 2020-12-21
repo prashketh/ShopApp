@@ -30,8 +30,11 @@ class SearchBar extends Component {
     render() {
 
         return (
-            <div className="d-flex flex-column p-3 change-width">
-                <h1 class="header-color">The Shoppies</h1>
+            <div class="d-flex flex-column p-3 change-width">
+                <div class="d-flex flex-row">
+                    <h1 class="header-color">The Shoppies</h1>
+                    <small>By Prashanth</small>
+                </div>
                 <form class="d-flex flex-column card p-2" onSubmit={this.submit}>
                     <div class="pl-3 pt-3 pr-3">
                         <h5>Movie title</h5>
