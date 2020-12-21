@@ -169,10 +169,10 @@ class DisplayMovies extends Component {
                     </div>
                     {this.props.isLoading ?
                         <div class="card d-flex justify-content-center bg-light text-center mb-2 p-2">
-                        <div>
-                            <img class="loadingGIF" src={loading} alt="loading..." />
+                            <div>
+                                <img class="loadingGIF" src={loading} alt="loading..." />
+                            </div>
                         </div>
-                    </div>
                         : null}
                     <div class="d-flex flex-row">
                         <div class="card pt-2 pl-2 pr-2 card-set-width">
