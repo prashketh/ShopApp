@@ -21,7 +21,7 @@ class SearchBar extends Component {
     };
 
     handleChange(event) {
-        this.setState({ searchTerm: event.target.value });
+        this.setState({ searchTerm: event.target.value.trim() });
     }
 
     changeFinalTerm() {
