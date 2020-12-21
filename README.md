@@ -11,8 +11,6 @@ to behave more as a Top 5 list rather than just an arbitrary list of nominations
 - Ability to remove all nominations at once
 - Loading animation on search requests
 
-The reason for choosing these features was because I thought they improved the overall user experience (UX) such as ease of use of the web application.
-
 ## Tech/framework used
 
 - React
