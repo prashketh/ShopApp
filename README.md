@@ -3,9 +3,13 @@
 This web application was built using React. The functionality is based on the description provided at (https://docs.google.com/document/d/1AZO0BZwn1Aogj4f3PDNe1mhq8pKsXZxtrG--EIbP_-w/edit?usp=sharing). Some additional visual changes were made to offer a cleaner/clearer UI while also
 sticking to a simple and effective layout. For example, replacing the bullet point with boxes for each result and nomination. Designed nominations list
 to behave more as a Top 5 list rather than just an arbitrary list of nominations.
-In terms of additional features made, I implemented the search feature to work by pressing ENTER or 
-clicking the dedicated Search button. Also created a switch that allows users to view the posters of the movies under the Results list. Also added the functionality 
-to clear all nominations.
+
+## Extra Features
+
+- Searching works by pressing ENTER key or clicking Search button
+- Ability to toggle movie posters on and off, on being visible and off being not visible
+- Ability to remove all nominations at once
+- Loading animation on search requests
 
 The reason for choosing these features was because I thought they improved the overall user experience (UX) such as ease of use of the web application.
 
