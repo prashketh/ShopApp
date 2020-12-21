@@ -13,7 +13,7 @@ class SearchBar extends Component {
         this.state = {
             searchTerm: '',
             finalTerm: '',
-            movies: null, 
+            movies: null,
         }
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
@@ -31,10 +31,7 @@ class SearchBar extends Component {
 
         return (
             <div class="d-flex flex-column p-3 change-width">
-                <div class="d-flex flex-row">
-                    <h1 class="header-color">The Shoppies</h1>
-                    <h6 class="header-color pt-4 pl-2">By Prashanth</h6>
-                </div>
+                <h1 class="header-color">The Shoppies</h1>
                 <form class="d-flex flex-column card p-2" onSubmit={this.submit}>
                     <div class="pl-3 pt-3 pr-3">
                         <h5>Movie title</h5>
@@ -50,7 +47,7 @@ class SearchBar extends Component {
                     </div>
                 </form>
                 <div class="d-flex flex-row pt-2 change-width">
-                    <DisplayMovies searchTerm={this.state.finalTerm} movies={this.state.movies} lowerCaseSearch={this.state.finalTerm.toLowerCase()}/>
+                    <DisplayMovies searchTerm={this.state.finalTerm} movies={this.state.movies} lowerCaseSearch={this.state.finalTerm.toLowerCase()} />
                 </div>
             </div>
         )

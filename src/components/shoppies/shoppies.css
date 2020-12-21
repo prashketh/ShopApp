@@ -1,9 +1,9 @@
 .change-width {
-    /* max-width: 500px; */
     width: 50rem;
     margin: auto;
 }
 
 .header-color {
     color: #ffffff;
+    clear: none;
 }
