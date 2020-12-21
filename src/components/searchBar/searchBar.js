@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './shoppies.css'
+import './searchBar.css'
 import DisplayMovies from '../displayMovies/displayMovies';
 
 const APIkey = 42661839;
