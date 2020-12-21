@@ -10,6 +10,7 @@ to behave more as a Top 5 list rather than just an arbitrary list of nominations
 - Ability to toggle movie posters on and off, on being visible and off being not visible
 - Ability to remove all nominations at once
 - Loading animation on search requests
+- Visual/design changes described in section above
 
 ## Tech/framework used
 
