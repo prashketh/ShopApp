@@ -11,3 +11,7 @@
     float: right !important;
     right: 10% !important;
 }
+
+.loadingGIF {
+    align-content: center;
+}

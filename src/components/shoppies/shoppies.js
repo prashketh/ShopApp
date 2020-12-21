@@ -14,6 +14,7 @@ class SearchBar extends Component {
             searchTerm: '',
             finalTerm: '',
             movies: null,
+            loading: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
@@ -47,7 +48,7 @@ class SearchBar extends Component {
                     </div>
                 </form>
                 <div class="d-flex flex-row pt-2 change-width">
-                    <DisplayMovies searchTerm={this.state.finalTerm} movies={this.state.movies} lowerCaseSearch={this.state.finalTerm.toLowerCase()} />
+                    <DisplayMovies searchTerm={this.state.finalTerm} movies={this.state.movies} lowerCaseSearch={this.state.finalTerm.toLowerCase()} isLoading={this.state.loading} />
                 </div>
             </div>
         )
@@ -57,11 +58,11 @@ class SearchBar extends Component {
     submit(e) {
         e.preventDefault(); // prevents the refresh on key enter
         this.changeFinalTerm();
+        this.setState({ loading: true, movies: null });
         fetch(`https://www.omdbapi.com/?s=${this.state.searchTerm}&apikey=${APIkey}`)
             .then(resp => resp.json())
             .then(response => {
-                this.setState({ movies: null });
-                this.setState({ movies: response.Search })
+                this.setState({ loading: false, movies: response.Search });
             })
             .catch((error) =>
                 console.log(error)

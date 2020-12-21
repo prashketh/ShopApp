@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './displayMovies.css'
+import loading from '../../assets/loading.gif'
 
 let nomIndexes = [];
 let nomMovies = [];
@@ -150,6 +151,7 @@ class DisplayMovies extends Component {
     render() {
         return (
             <React.Fragment>
+                {console.log(this.props.isLoading)}
                 <div class="d-flex flex-column">
                     <div class="card mb-2 pt-1">
                         <div class="d-flex justify-content-around">
@@ -165,6 +167,13 @@ class DisplayMovies extends Component {
                             </div>
                         </div>
                     </div>
+                    {this.props.isLoading ?
+                        <div class="card d-flex justify-content-center bg-light text-center mb-2 p-2">
+                        <div>
+                            <img class="loadingGIF" src={loading} alt="loading..." />
+                        </div>
+                    </div>
+                        : null}
                     <div class="d-flex flex-row">
                         <div class="card pt-2 pl-2 pr-2 card-set-width">
                             <div class="card-body">
