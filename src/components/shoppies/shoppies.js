@@ -37,10 +37,10 @@ class SearchBar extends Component {
                         <h5>Movie title</h5>
                     </div>
                     <div class="input-group pt-2 pl-3 pr-3">
-                        <div class="input-group-prepend">
+                        <input type="text" class="form-control" placeholder="" value={this.state.value} onChange={this.handleChange} />
+                        <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit">Search</button>
                         </div>
-                        <input type="text" class="form-control" placeholder="" value={this.state.value} onChange={this.handleChange} />
                     </div>
                     <div class="pl-3 pt-2 pb-3 pr-3">
                         <small>Press ENTER or click the search button to find a movie</small>
