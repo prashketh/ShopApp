@@ -4,6 +4,8 @@ This web application was built using React. The functionality is based on the de
 sticking to a simple and effective layout. For example, replacing the bullet point with boxes for each result and nomination. Designed nominations list
 to behave more as a Top 5 list rather than just an arbitrary list of nominations.
 
+Hosted at (prashkethshopify.netlify.app)
+
 ## Extra Features
 
 - Searching works by pressing ENTER key or clicking Search button
