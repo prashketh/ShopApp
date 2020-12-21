@@ -7,6 +7,8 @@ In terms of additional features made, I implemented the search feature to work b
 clicking the dedicated Search button. Also created a switch that allows users to view the posters of the movies under the Results list. Also added the functionality 
 to clear all nominations.
 
+The reason for choosing these features was because I thought they improved the overall user experience (UX) such as ease of use of the web application.
+
 ## Tech/framework used
 
 - React
