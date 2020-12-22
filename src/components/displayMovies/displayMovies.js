@@ -28,33 +28,29 @@ class DisplayMovies extends Component {
         search = this.props.lowerCaseSearch;
     }
 
-    componentDidUpdate() {
-        if (search !== this.props.lowerCaseSearch) search = this.props.lowerCaseSearch;
-    }
-
     handleNomChange(event) {
         if (!this.state.nomOne && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomOne: { key: event.target.value, movieID: event.target.id, query: search } });
+            this.setState({ nomOne: { key: event.target.value, movieID: event.target.id } });
             nomIDS.push(event.target.id);
             nomMovies.push(event.target.value);
         }
         else if (!this.state.nomTwo && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomTwo: { key: event.target.value, movieID: event.target.id, query: search } });
+            this.setState({ nomTwo: { key: event.target.value, movieID: event.target.id } });
             nomIDS.push(event.target.id);
             nomMovies.push(event.target.value);
         }
         else if (!this.state.nomThree && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomThree: { key: event.target.value, movieID: event.target.id, query: search } });
+            this.setState({ nomThree: { key: event.target.value, movieID: event.target.id } });
             nomIDS.push(event.target.id);
             nomMovies.push(event.target.value);
         }
         else if (!this.state.nomFour && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomFour: { key: event.target.value, movieID: event.target.id, query: search } });
+            this.setState({ nomFour: { key: event.target.value, movieID: event.target.id } });
             nomIDS.push(event.target.id);
             nomMovies.push(event.target.value);
         }
         else if (!this.state.nomFive && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomFive: { key: event.target.value, movieID: event.target.id, query: search } });
+            this.setState({ nomFive: { key: event.target.value, movieID: event.target.id } });
             nomIDS.push(event.target.id);
             nomMovies.push(event.target.value);
         }
@@ -64,60 +60,38 @@ class DisplayMovies extends Component {
     }
 
     handleNomRemove(event) {
-        let tempQuery;
-        let tempSearch;
 
         if (this.state.nomOne && event.target.value === this.state.nomOne.key) {
-            tempQuery = this.state.nomOne.query.length.toString();
-            tempSearch = search.length.toString();
-            if (search === this.state.nomOne.query && tempSearch.includes(tempQuery)) {
-                if (nomIDS.indexOf(this.state.nomOne.movieID) > -1) {
-                    nomIDS.splice(nomIDS.indexOf(this.state.nomOne.movieID), 1);
-                }
+            if (nomIDS.indexOf(this.state.nomOne.movieID) > -1) {
+                nomIDS.splice(nomIDS.indexOf(this.state.nomOne.movieID), 1);
             }
             this.setState({ nomOne: null });
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
         else if (this.state.nomTwo && event.target.value === this.state.nomTwo.key) {
-            tempQuery = this.state.nomTwo.query.length.toString();
-            tempSearch = search.length.toString();
-            if (search === this.state.nomTwo.query && tempSearch.includes(tempQuery)) {
-                if (nomIDS.indexOf(this.state.nomTwo.movieID) > -1) {
-                    nomIDS.splice(nomIDS.indexOf(this.state.nomTwo.movieID), 1);
-                }
+            if (nomIDS.indexOf(this.state.nomTwo.movieID) > -1) {
+                nomIDS.splice(nomIDS.indexOf(this.state.nomTwo.movieID), 1);
             }
             this.setState({ nomTwo: null });
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
         else if (this.state.nomThree && event.target.value === this.state.nomThree.key) {
-            tempQuery = this.state.nomThree.query.length.toString();
-            tempSearch = search.length.toString();
-            if (search === this.state.nomThree.query && tempSearch.includes(tempQuery)) {
-                if (nomIDS.indexOf(this.state.nomThree.movieID) > -1) {
-                    nomIDS.splice(nomIDS.indexOf(this.state.nomThree.movieID), 1);
-                }
+            if (nomIDS.indexOf(this.state.nomThree.movieID) > -1) {
+                nomIDS.splice(nomIDS.indexOf(this.state.nomThree.movieID), 1);
             }
             this.setState({ nomThree: null });
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
         else if (this.state.nomFour && event.target.value === this.state.nomFour.key) {
-            tempQuery = this.state.nomFour.query.length.toString();
-            tempSearch = search.length.toString();
-            if (search === this.state.nomFour.query && tempSearch.includes(tempQuery)) {
-                if (nomIDS.indexOf(this.state.nomFour.movieID) > -1) {
-                    nomIDS.splice(nomIDS.indexOf(this.state.nomFour.movieID), 1);
-                }
+            if (nomIDS.indexOf(this.state.nomFour.movieID) > -1) {
+                nomIDS.splice(nomIDS.indexOf(this.state.nomFour.movieID), 1);
             }
             this.setState({ nomFour: null });
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
         else if (this.state.nomFive && event.target.value === this.state.nomFive.key) {
-            tempQuery = this.state.nomFive.query.length.toString();
-            tempSearch = search.length.toString();
-            if (search === this.state.nomFive.query && tempSearch.includes(tempQuery)) {
-                if (nomIDS.indexOf(this.state.nomFive.movieID) > -1) {
-                    nomIDS.splice(nomIDS.indexOf(this.state.nomFive.movieID), 1);
-                }
+            if (nomIDS.indexOf(this.state.nomFive.movieID) > -1) {
+                nomIDS.splice(nomIDS.indexOf(this.state.nomFive.movieID), 1);
             }
             this.setState({ nomFive: null });
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
@@ -143,90 +117,88 @@ class DisplayMovies extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <div class="d-flex flex-column">
-                    <div class="card mb-2 pt-1">
-                        <div class="d-flex justify-content-around">
-                            <div class="m-2 p-1">
-                                <h5>Options:</h5>
-                            </div>
-                            <div class="custom-control custom-switch m-2 p-2">
-                                <input type="checkbox" class="custom-control-input" id="switchPoster" onChange={this.handleToggle} />
-                                <label class="custom-control-label switch-align" for="switchPoster">Show posters</label>
-                            </div>
-                            <div class="m-2 p-1">
-                                <button type="button" class="btn btn-outline-secondary" onClick={this.handleClearNoms}>Clear all nominations</button>
-                            </div>
+            <div class="d-flex flex-column">
+                <div class="card mb-2 pt-1">
+                    <div class="d-flex justify-content-around">
+                        <div class="m-2 p-1">
+                            <h5>Options:</h5>
+                        </div>
+                        <div class="custom-control custom-switch m-2 p-2">
+                            <input type="checkbox" class="custom-control-input" id="switchPoster" onChange={this.handleToggle} />
+                            <label class="custom-control-label switch-align" for="switchPoster">Show posters</label>
+                        </div>
+                        <div class="m-2 p-1">
+                            <button type="button" class="btn btn-outline-secondary" onClick={this.handleClearNoms}>Clear all nominations</button>
                         </div>
                     </div>
-                    <div class="d-flex flex-row">
-                        <div class="card pt-2 pl-2 pr-2 card-set-width">
-                            <div class="card-body">
-                                <div class="d-flex flex-row">
-                                    <div>
-                                        <h5 class="card-title">{this.props.searchTerm ? 'Results for "' + this.props.searchTerm + '"' : "Results"}</h5>
-                                    </div>
-                                </div>
-                                <ul class="list-group">
-                                    {this.props.movies ? this.props.movies.map(
-                                        (movie) =>
-                                            this.checkIfIDExists(movie) ?
-                                                <li class="list-group-item list-group-item-light" key={movie.Title}>
-                                                    <form class="d-flex flex-column m-1">
-                                                        <h6>{movie.Title} ({movie.Year})</h6>
-                                                        {this.state.showPoster ? <img alt="" src={movie.Poster} /> : null}
-                                                        <button type="button" class="btn btn-secondary btn-set-width mt-2" disabled={true}>Nominate</button>
-                                                    </form>
-                                                </li> :
-                                                <li class="list-group-item list-group-item-light" key={movie.Title}>
-                                                    <form class="d-flex flex-column m-1">
-                                                        <h6>{movie.Title} ({movie.Year})</h6>
-                                                        {this.state.showPoster ? <img alt="" src={movie.Poster} /> : null}
-                                                        <button type="button" class="btn btn-secondary btn-set-width mt-2" id={movie.imdbID} value={movie.Title + " (" + movie.Year + ")"} onClick={this.handleNomChange}>Nominate</button>
-                                                    </form>
-                                                </li>
-                                    ) :
-                                        <li class="list-group-item list-group-item-light">
-                                            {this.props.isLoading ?
-                                                <div class="text-center">
-                                                    <img class="loadingGIF" src={loading} alt="loading..." />
-                                                </div>
-                                                : "No Results"}
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="pl-2">
+                </div>
+                <div class="d-flex flex-row">
+                    <div class="card pt-2 pl-2 pr-2 card-set-width">
+                        <div class="card-body">
                             <div class="d-flex flex-row">
-                                <div class="card pt-2 pl-2 pr-2 card-set-width">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Nominations (Top 5)</h5>
-                                        {this.state.nomOne && this.state.nomTwo && this.state.nomThree && this.state.nomFour && this.state.nomFive ? <div class="alert alert-info" role="alert">
-                                            Nominations limit reached (Max 5)
+                                <div>
+                                    <h5 class="card-title">{this.props.searchTerm ? 'Results for "' + this.props.searchTerm + '"' : "Results"}</h5>
+                                </div>
+                            </div>
+                            <ul class="list-group">
+                                {this.props.movies ? this.props.movies.map(
+                                    (movie) =>
+                                        this.checkIfIDExists(movie) ?
+                                            <li class="list-group-item list-group-item-light" key={movie.Title}>
+                                                <form class="d-flex flex-column m-1">
+                                                    <h6>{movie.Title} ({movie.Year})</h6>
+                                                    {this.state.showPoster ? <img alt="" src={movie.Poster} /> : null}
+                                                    <button type="button" class="btn btn-secondary btn-set-width mt-2" disabled={true}>Nominate</button>
+                                                </form>
+                                            </li> :
+                                            <li class="list-group-item list-group-item-light" key={movie.Title}>
+                                                <form class="d-flex flex-column m-1">
+                                                    <h6>{movie.Title} ({movie.Year})</h6>
+                                                    {this.state.showPoster ? <img alt="" src={movie.Poster} /> : null}
+                                                    <button type="button" class="btn btn-secondary btn-set-width mt-2" id={movie.imdbID} value={movie.Title + " (" + movie.Year + ")"} onClick={this.handleNomChange}>Nominate</button>
+                                                </form>
+                                            </li>
+                                ) :
+                                    <li class="list-group-item list-group-item-light">
+                                        {this.props.isLoading ?
+                                            <div class="text-center">
+                                                <img class="loadingGIF" src={loading} alt="loading..." />
+                                            </div>
+                                            : "No Results"}
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pl-2">
+                        <div class="d-flex flex-row">
+                            <div class="card pt-2 pl-2 pr-2 card-set-width">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nominations (Top 5)</h5>
+                                    {this.state.nomOne && this.state.nomTwo && this.state.nomThree && this.state.nomFour && this.state.nomFive ? <div class="alert alert-info" role="alert">
+                                        Nominations limit reached (Max 5)
                             </div> : null}
-                                        <ul class="list-group">
-                                            {[this.state.nomOne, this.state.nomTwo, this.state.nomThree, this.state.nomFour, this.state.nomFive] ? [this.state.nomOne, this.state.nomTwo, this.state.nomThree, this.state.nomFour, this.state.nomFive].map(
-                                                (nom) =>
-                                                    nom ?
-                                                        <li class="list-group-item list-group-item-light">
-                                                            <form class="d-flex flex-column m-1">
-                                                                <p>{nom.key}</p>
-                                                                <button type="button" class="btn btn-secondary btn-set-width" value={nom.key} onClick={this.handleNomRemove}>Remove</button>
-                                                            </form>
-                                                        </li>
-                                                        : <li class="list-group-item list-group-item-light">
-                                                            Choose a movie
+                                    <ul class="list-group">
+                                        {[this.state.nomOne, this.state.nomTwo, this.state.nomThree, this.state.nomFour, this.state.nomFive] ? [this.state.nomOne, this.state.nomTwo, this.state.nomThree, this.state.nomFour, this.state.nomFive].map(
+                                            (nom) =>
+                                                nom ?
+                                                    <li class="list-group-item list-group-item-light">
+                                                        <form class="d-flex flex-column m-1">
+                                                            <p>{nom.key}</p>
+                                                            <button type="button" class="btn btn-secondary btn-set-width" value={nom.key} onClick={this.handleNomRemove}>Remove</button>
+                                                        </form>
+                                                    </li>
+                                                    : <li class="list-group-item list-group-item-light">
+                                                        Choose a movie
                                                 </li>
-                                            ) : null}
-                                        </ul>
-                                    </div>
+                                        ) : null}
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+            </div>
         )
     };
 }
