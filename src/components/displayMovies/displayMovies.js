@@ -4,7 +4,6 @@ import loading from '../../assets/loading.gif'
 
 let nomIDS = [];
 let nomMovies = [];
-let search;
 
 class DisplayMovies extends Component {
     constructor(props) {
@@ -22,10 +21,6 @@ class DisplayMovies extends Component {
         this.handleNomRemove = this.handleNomRemove.bind(this);
         this.handleToggle = this.handleToggle.bind(this);
         this.handleClearNoms = this.handleClearNoms.bind(this);
-    }
-
-    componentDidMount() {
-        search = this.props.lowerCaseSearch;
     }
 
     handleNomChange(event) {
