@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './displayMovies.css'
 import loading from '../../assets/loading.gif'
 
-let nomIDS = [];
+let nomIDs = [];
 let nomMovies = [];
 
 class DisplayMovies extends Component {
@@ -26,59 +26,55 @@ class DisplayMovies extends Component {
     handleNomChange(event) {
         if (!this.state.nomOne && nomMovies.includes(event.target.value) == false) {
             this.setState({ nomOne: { key: event.target.value, movieID: event.target.id } });
-            nomIDS.push(event.target.id);
+            nomIDs.push(event.target.id);
             nomMovies.push(event.target.value);
         }
         else if (!this.state.nomTwo && nomMovies.includes(event.target.value) == false) {
             this.setState({ nomTwo: { key: event.target.value, movieID: event.target.id } });
-            nomIDS.push(event.target.id);
+            nomIDs.push(event.target.id);
             nomMovies.push(event.target.value);
         }
         else if (!this.state.nomThree && nomMovies.includes(event.target.value) == false) {
             this.setState({ nomThree: { key: event.target.value, movieID: event.target.id } });
-            nomIDS.push(event.target.id);
+            nomIDs.push(event.target.id);
             nomMovies.push(event.target.value);
         }
         else if (!this.state.nomFour && nomMovies.includes(event.target.value) == false) {
             this.setState({ nomFour: { key: event.target.value, movieID: event.target.id } });
-            nomIDS.push(event.target.id);
+            nomIDs.push(event.target.id);
             nomMovies.push(event.target.value);
         }
         else if (!this.state.nomFive && nomMovies.includes(event.target.value) == false) {
             this.setState({ nomFive: { key: event.target.value, movieID: event.target.id } });
-            nomIDS.push(event.target.id);
+            nomIDs.push(event.target.id);
             nomMovies.push(event.target.value);
-        }
-        else if (nomMovies.includes(event.target.value)) {
-            nomIDS.push(event.target.id);
         }
     }
 
     handleNomRemove(event) {
-
         if (this.state.nomOne && event.target.value === this.state.nomOne.key) {
-            nomIDS.splice(nomIDS.indexOf(this.state.nomOne.movieID), 1);
             this.setState({ nomOne: null });
+            nomIDs.splice(nomIDs.indexOf(this.state.nomOne.movieID), 1);
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
         else if (this.state.nomTwo && event.target.value === this.state.nomTwo.key) {
-            nomIDS.splice(nomIDS.indexOf(this.state.nomTwo.movieID), 1);
             this.setState({ nomTwo: null });
+            nomIDs.splice(nomIDs.indexOf(this.state.nomTwo.movieID), 1);
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
         else if (this.state.nomThree && event.target.value === this.state.nomThree.key) {
-            nomIDS.splice(nomIDS.indexOf(this.state.nomThree.movieID), 1);
             this.setState({ nomThree: null });
+            nomIDs.splice(nomIDs.indexOf(this.state.nomThree.movieID), 1);
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
         else if (this.state.nomFour && event.target.value === this.state.nomFour.key) {
-            nomIDS.splice(nomIDS.indexOf(this.state.nomFour.movieID), 1);
             this.setState({ nomFour: null });
+            nomIDs.splice(nomIDs.indexOf(this.state.nomFour.movieID), 1);
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
         else if (this.state.nomFive && event.target.value === this.state.nomFive.key) {
-            nomIDS.splice(nomIDS.indexOf(this.state.nomFive.movieID), 1);
             this.setState({ nomFive: null });
+            nomIDs.splice(nomIDs.indexOf(this.state.nomFive.movieID), 1);
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
     }
@@ -90,11 +86,11 @@ class DisplayMovies extends Component {
     handleClearNoms() {
         this.setState({ nomOne: null, nomTwo: null, nomThree: null, nomFour: null, nomFive: null });
         nomMovies = [];
-        nomIDS = [];
+        nomIDs = [];
     }
 
     checkIfIDExists(movie) {
-        if (nomIDS.includes(movie.imdbID)) {
+        if (nomIDs.includes(movie.imdbID)) {
             return true;
         }
         return false;
