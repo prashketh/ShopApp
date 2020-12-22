@@ -24,27 +24,27 @@ class DisplayMovies extends Component {
     }
 
     handleNomChange(event) {
-        if (!this.state.nomOne && nomMovies.includes(event.target.value) == false) {
+        if (!this.state.nomOne && nomIDs.includes(event.target.id) == false) {
             this.setState({ nomOne: { key: event.target.value, movieID: event.target.id } });
             nomIDs.push(event.target.id);
             nomMovies.push(event.target.value);
         }
-        else if (!this.state.nomTwo && nomMovies.includes(event.target.value) == false) {
+        else if (!this.state.nomTwo && nomIDs.includes(event.target.id) == false) {
             this.setState({ nomTwo: { key: event.target.value, movieID: event.target.id } });
             nomIDs.push(event.target.id);
             nomMovies.push(event.target.value);
         }
-        else if (!this.state.nomThree && nomMovies.includes(event.target.value) == false) {
+        else if (!this.state.nomThree && nomIDs.includes(event.target.id) == false) {
             this.setState({ nomThree: { key: event.target.value, movieID: event.target.id } });
             nomIDs.push(event.target.id);
             nomMovies.push(event.target.value);
         }
-        else if (!this.state.nomFour && nomMovies.includes(event.target.value) == false) {
+        else if (!this.state.nomFour && nomIDs.includes(event.target.id) == false) {
             this.setState({ nomFour: { key: event.target.value, movieID: event.target.id } });
             nomIDs.push(event.target.id);
             nomMovies.push(event.target.value);
         }
-        else if (!this.state.nomFive && nomMovies.includes(event.target.value) == false) {
+        else if (!this.state.nomFive && nomIDs.includes(event.target.id) == false) {
             this.setState({ nomFive: { key: event.target.value, movieID: event.target.id } });
             nomIDs.push(event.target.id);
             nomMovies.push(event.target.value);
