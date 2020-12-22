@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './displayMovies.css'
 import loading from '../../assets/loading.gif'
 
-let nomIndexes = [];
+let nomIDS = [];
 let nomMovies = [];
 let search;
 
@@ -16,7 +16,6 @@ class DisplayMovies extends Component {
             nomThree: null,
             nomFour: null,
             nomFive: null,
-            alreadyExists: false,
             showPoster: false,
         }
         this.handleNomChange = this.handleNomChange.bind(this);
@@ -30,49 +29,37 @@ class DisplayMovies extends Component {
     }
 
     componentDidUpdate() {
-        if (search !== this.props.lowerCaseSearch) {
-            search = this.props.lowerCaseSearch;
-            nomIndexes = [];
-        }
+        if (search !== this.props.lowerCaseSearch) search = this.props.lowerCaseSearch;
     }
 
     handleNomChange(event) {
         if (!this.state.nomOne && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomOne: { key: event.target.value, index: event.target.id, query: search } });
-            nomIndexes.push(event.target.id);
+            this.setState({ nomOne: { key: event.target.value, movieID: event.target.id, query: search } });
+            nomIDS.push(event.target.id);
             nomMovies.push(event.target.value);
-            this.setState({ alreadyExists: false });
         }
         else if (!this.state.nomTwo && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomTwo: { key: event.target.value, index: event.target.id, query: search } });
-            nomIndexes.push(event.target.id);
+            this.setState({ nomTwo: { key: event.target.value, movieID: event.target.id, query: search } });
+            nomIDS.push(event.target.id);
             nomMovies.push(event.target.value);
-            this.setState({ alreadyExists: false });
         }
         else if (!this.state.nomThree && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomThree: { key: event.target.value, index: event.target.id, query: search } });
-            nomIndexes.push(event.target.id);
+            this.setState({ nomThree: { key: event.target.value, movieID: event.target.id, query: search } });
+            nomIDS.push(event.target.id);
             nomMovies.push(event.target.value);
-            this.setState({ alreadyExists: false });
         }
         else if (!this.state.nomFour && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomFour: { key: event.target.value, index: event.target.id, query: search } });
-            nomIndexes.push(event.target.id);
+            this.setState({ nomFour: { key: event.target.value, movieID: event.target.id, query: search } });
+            nomIDS.push(event.target.id);
             nomMovies.push(event.target.value);
-            this.setState({ alreadyExists: false });
         }
         else if (!this.state.nomFive && nomMovies.includes(event.target.value) == false) {
-            this.setState({ nomFive: { key: event.target.value, index: event.target.id, query: search } });
-            nomIndexes.push(event.target.id);
+            this.setState({ nomFive: { key: event.target.value, movieID: event.target.id, query: search } });
+            nomIDS.push(event.target.id);
             nomMovies.push(event.target.value);
-            this.setState({ alreadyExists: false });
         }
         else if (nomMovies.includes(event.target.value)) {
-            this.setState({ alreadyExists: true });
-            nomIndexes.push(event.target.id);
-        }
-        else {
-            this.setState({ alreadyExists: false });
+            nomIDS.push(event.target.id);
         }
     }
 
@@ -84,8 +71,8 @@ class DisplayMovies extends Component {
             tempQuery = this.state.nomOne.query.length.toString();
             tempSearch = search.length.toString();
             if (search === this.state.nomOne.query && tempSearch.includes(tempQuery)) {
-                if (nomIndexes.indexOf(this.state.nomOne.index) > -1) {
-                    nomIndexes.splice(nomIndexes.indexOf(this.state.nomOne.index), 1);
+                if (nomIDS.indexOf(this.state.nomOne.movieID) > -1) {
+                    nomIDS.splice(nomIDS.indexOf(this.state.nomOne.movieID), 1);
                 }
             }
             this.setState({ nomOne: null });
@@ -95,8 +82,8 @@ class DisplayMovies extends Component {
             tempQuery = this.state.nomTwo.query.length.toString();
             tempSearch = search.length.toString();
             if (search === this.state.nomTwo.query && tempSearch.includes(tempQuery)) {
-                if (nomIndexes.indexOf(this.state.nomTwo.index) > -1) {
-                    nomIndexes.splice(nomIndexes.indexOf(this.state.nomTwo.index), 1);
+                if (nomIDS.indexOf(this.state.nomTwo.movieID) > -1) {
+                    nomIDS.splice(nomIDS.indexOf(this.state.nomTwo.movieID), 1);
                 }
             }
             this.setState({ nomTwo: null });
@@ -106,8 +93,8 @@ class DisplayMovies extends Component {
             tempQuery = this.state.nomThree.query.length.toString();
             tempSearch = search.length.toString();
             if (search === this.state.nomThree.query && tempSearch.includes(tempQuery)) {
-                if (nomIndexes.indexOf(this.state.nomThree.index) > -1) {
-                    nomIndexes.splice(nomIndexes.indexOf(this.state.nomThree.index), 1);
+                if (nomIDS.indexOf(this.state.nomThree.movieID) > -1) {
+                    nomIDS.splice(nomIDS.indexOf(this.state.nomThree.movieID), 1);
                 }
             }
             this.setState({ nomThree: null });
@@ -117,8 +104,8 @@ class DisplayMovies extends Component {
             tempQuery = this.state.nomFour.query.length.toString();
             tempSearch = search.length.toString();
             if (search === this.state.nomFour.query && tempSearch.includes(tempQuery)) {
-                if (nomIndexes.indexOf(this.state.nomFour.index) > -1) {
-                    nomIndexes.splice(nomIndexes.indexOf(this.state.nomFour.index), 1);
+                if (nomIDS.indexOf(this.state.nomFour.movieID) > -1) {
+                    nomIDS.splice(nomIDS.indexOf(this.state.nomFour.movieID), 1);
                 }
             }
             this.setState({ nomFour: null });
@@ -128,14 +115,13 @@ class DisplayMovies extends Component {
             tempQuery = this.state.nomFive.query.length.toString();
             tempSearch = search.length.toString();
             if (search === this.state.nomFive.query && tempSearch.includes(tempQuery)) {
-                if (nomIndexes.indexOf(this.state.nomFive.index) > -1) {
-                    nomIndexes.splice(nomIndexes.indexOf(this.state.nomFive.index), 1);
+                if (nomIDS.indexOf(this.state.nomFive.movieID) > -1) {
+                    nomIDS.splice(nomIDS.indexOf(this.state.nomFive.movieID), 1);
                 }
             }
             this.setState({ nomFive: null });
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
-        this.setState({ alreadyExists: false });
     }
 
     handleToggle() {
@@ -143,15 +129,21 @@ class DisplayMovies extends Component {
     }
 
     handleClearNoms() {
-        this.setState({ nomOne: null, nomTwo: null, nomThree: null, nomFour: null, nomFive: null, alreadyExists: false });
+        this.setState({ nomOne: null, nomTwo: null, nomThree: null, nomFour: null, nomFive: null });
         nomMovies = [];
-        nomIndexes = [];
+        nomIDS = [];
+    }
+
+    checkIfIDExists(movie) {
+        if (nomIDS.includes(movie.imdbID)) {
+            return true;
+        }
+        return false;
     }
 
     render() {
         return (
             <React.Fragment>
-                {console.log(this.props.isLoading)}
                 <div class="d-flex flex-column">
                     <div class="card mb-2 pt-1">
                         <div class="d-flex justify-content-around">
@@ -177,8 +169,8 @@ class DisplayMovies extends Component {
                                 </div>
                                 <ul class="list-group">
                                     {this.props.movies ? this.props.movies.map(
-                                        (movie, index) =>
-                                            nomIndexes.includes(index.toString()) ?
+                                        (movie) =>
+                                            this.checkIfIDExists(movie) ?
                                                 <li class="list-group-item list-group-item-light" key={movie.Title}>
                                                     <form class="d-flex flex-column m-1">
                                                         <h6>{movie.Title} ({movie.Year})</h6>
@@ -190,14 +182,14 @@ class DisplayMovies extends Component {
                                                     <form class="d-flex flex-column m-1">
                                                         <h6>{movie.Title} ({movie.Year})</h6>
                                                         {this.state.showPoster ? <img alt="" src={movie.Poster} /> : null}
-                                                        <button type="button" class="btn btn-secondary btn-set-width mt-2" id={index} value={movie.Title + " (" + movie.Year + ")"} onClick={this.handleNomChange}>Nominate</button>
+                                                        <button type="button" class="btn btn-secondary btn-set-width mt-2" id={movie.imdbID} value={movie.Title + " (" + movie.Year + ")"} onClick={this.handleNomChange}>Nominate</button>
                                                     </form>
                                                 </li>
                                     ) :
                                         <li class="list-group-item list-group-item-light">
                                             {this.props.isLoading ?
-                                            <div class="text-center">
-                                                <img class="loadingGIF" src={loading} alt="loading..." />
+                                                <div class="text-center">
+                                                    <img class="loadingGIF" src={loading} alt="loading..." />
                                                 </div>
                                                 : "No Results"}
                                         </li>
@@ -213,9 +205,6 @@ class DisplayMovies extends Component {
                                         {this.state.nomOne && this.state.nomTwo && this.state.nomThree && this.state.nomFour && this.state.nomFive ? <div class="alert alert-info" role="alert">
                                             Nominations limit reached (Max 5)
                             </div> : null}
-                                        {!this.state.alreadyExists ? null : <div class="alert alert-info" role="alert">
-                                            Nomination already exists
-                            </div>}
                                         <ul class="list-group">
                                             {[this.state.nomOne, this.state.nomTwo, this.state.nomThree, this.state.nomFour, this.state.nomFive] ? [this.state.nomOne, this.state.nomTwo, this.state.nomThree, this.state.nomFour, this.state.nomFive].map(
                                                 (nom) =>
