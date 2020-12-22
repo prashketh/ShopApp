@@ -125,14 +125,14 @@ class DisplayMovies extends Component {
                                 {this.props.movies ? this.props.movies.map(
                                     (movie) =>
                                         this.checkIfIDExists(movie) ?
-                                            <li class="list-group-item list-group-item-light" key={movie.Title}>
+                                            <li class="list-group-item list-group-item-light">
                                                 <form class="d-flex flex-column m-1">
                                                     <h6>{movie.Title} ({movie.Year})</h6>
                                                     {this.state.showPoster ? <img alt="" src={movie.Poster} /> : null}
                                                     <button type="button" class="btn btn-secondary btn-set-width mt-2" disabled={true}>Nominate</button>
                                                 </form>
                                             </li> :
-                                            <li class="list-group-item list-group-item-light" key={movie.Title}>
+                                            <li class="list-group-item list-group-item-light">
                                                 <form class="d-flex flex-column m-1">
                                                     <h6>{movie.Title} ({movie.Year})</h6>
                                                     {this.state.showPoster ? <img alt="" src={movie.Poster} /> : null}
