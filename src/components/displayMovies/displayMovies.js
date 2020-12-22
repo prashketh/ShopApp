@@ -57,37 +57,27 @@ class DisplayMovies extends Component {
     handleNomRemove(event) {
 
         if (this.state.nomOne && event.target.value === this.state.nomOne.key) {
-            if (nomIDS.indexOf(this.state.nomOne.movieID) > -1) {
-                nomIDS.splice(nomIDS.indexOf(this.state.nomOne.movieID), 1);
-            }
+            nomIDS.splice(nomIDS.indexOf(this.state.nomOne.movieID), 1);
             this.setState({ nomOne: null });
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
         else if (this.state.nomTwo && event.target.value === this.state.nomTwo.key) {
-            if (nomIDS.indexOf(this.state.nomTwo.movieID) > -1) {
-                nomIDS.splice(nomIDS.indexOf(this.state.nomTwo.movieID), 1);
-            }
+            nomIDS.splice(nomIDS.indexOf(this.state.nomTwo.movieID), 1);
             this.setState({ nomTwo: null });
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
         else if (this.state.nomThree && event.target.value === this.state.nomThree.key) {
-            if (nomIDS.indexOf(this.state.nomThree.movieID) > -1) {
-                nomIDS.splice(nomIDS.indexOf(this.state.nomThree.movieID), 1);
-            }
+            nomIDS.splice(nomIDS.indexOf(this.state.nomThree.movieID), 1);
             this.setState({ nomThree: null });
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
         else if (this.state.nomFour && event.target.value === this.state.nomFour.key) {
-            if (nomIDS.indexOf(this.state.nomFour.movieID) > -1) {
-                nomIDS.splice(nomIDS.indexOf(this.state.nomFour.movieID), 1);
-            }
+            nomIDS.splice(nomIDS.indexOf(this.state.nomFour.movieID), 1);
             this.setState({ nomFour: null });
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
         else if (this.state.nomFive && event.target.value === this.state.nomFive.key) {
-            if (nomIDS.indexOf(this.state.nomFive.movieID) > -1) {
-                nomIDS.splice(nomIDS.indexOf(this.state.nomFive.movieID), 1);
-            }
+            nomIDS.splice(nomIDS.indexOf(this.state.nomFive.movieID), 1);
             this.setState({ nomFive: null });
             nomMovies.splice(nomMovies.indexOf(event.target.value), 1);
         }
