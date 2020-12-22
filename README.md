@@ -8,7 +8,6 @@ Hosted at (https://prashkethshopify.netlify.app)
 
 ## Extra Features
 
-- Searching works by pressing ENTER key or clicking Search button
 - Ability to toggle movie posters on and off, on being visible and off being not visible
 - Ability to remove all nominations at once
 - Loading animation on search requests
