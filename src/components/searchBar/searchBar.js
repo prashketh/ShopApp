@@ -28,6 +28,20 @@ class SearchBar extends Component {
         this.setState({ finalTerm: this.state.searchTerm });
     }
 
+    submit(e) {
+        e.preventDefault(); // prevents the refresh on key enter
+        this.changeFinalTerm();
+        this.setState({ loading: true, movies: null });
+        fetch(`https://www.omdbapi.com/?s=${this.state.searchTerm}&apikey=${APIkey}`)
+            .then(resp => resp.json())
+            .then(response => {
+                this.setState({ loading: false, movies: response.Search });
+            })
+            .catch((error) =>
+                console.log(error)
+            )
+    }
+
     render() {
 
         return (
@@ -54,20 +68,6 @@ class SearchBar extends Component {
         )
 
     };
-
-    submit(e) {
-        e.preventDefault(); // prevents the refresh on key enter
-        this.changeFinalTerm();
-        this.setState({ loading: true, movies: null });
-        fetch(`https://www.omdbapi.com/?s=${this.state.searchTerm}&apikey=${APIkey}`)
-            .then(resp => resp.json())
-            .then(response => {
-                this.setState({ loading: false, movies: response.Search });
-            })
-            .catch((error) =>
-                console.log(error)
-            )
-    }
 }
 
 export default SearchBar
