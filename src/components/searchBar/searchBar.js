@@ -21,7 +21,7 @@ class SearchBar extends Component {
     };
 
     handleChange(event) {
-        this.setState({ searchTerm: event.target.value.trim() });
+        this.setState({ searchTerm: event.target.value });
     }
 
     changeFinalTerm() {
@@ -45,11 +45,13 @@ class SearchBar extends Component {
 
     submit(e) {
         e.preventDefault(); // prevents the refresh on key enter
+        this.setState({ searchTerm: this.state.searchTerm.trim() });
         this.changeFinalTerm();
         this.setState({ loading: true, movies: null });
         fetch(`https://www.omdbapi.com/?s=${this.state.searchTerm}&apikey=${APIkey}`)
             .then(resp => resp.json())
             .then(response => {
+                this.setState({ searchTerm: '' })
                 this.setState({ loading: false, movies: this.getMoviesOnly(response.Search) });
             })
             .catch((error) =>
@@ -68,7 +70,7 @@ class SearchBar extends Component {
                         <h5>Movie title</h5>
                     </div>
                     <div class="input-group pt-2 pl-3 pr-3">
-                        <input type="text" class="form-control" placeholder="" value={this.state.value} onChange={this.handleChange} />
+                        <input type="text" class="form-control" value={this.state.searchTerm} onChange={this.handleChange} />
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit">Search</button>
                         </div>
