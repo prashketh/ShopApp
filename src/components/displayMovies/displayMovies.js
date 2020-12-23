@@ -104,8 +104,8 @@ class DisplayMovies extends Component {
     render() {
         return (
             <div class="d-flex flex-column">
+                {/* Extra Features */}
                 <div class="card mb-2 pt-1">
-                    {/* Extra Features */}
                     <div class="d-flex justify-content-around">
                         <div class="m-2 p-1">
                             <h5>Options:</h5>
