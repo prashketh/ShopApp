@@ -32,12 +32,15 @@ class SearchBar extends Component {
     getMoviesOnly(movies) {
         // Shows only movies
         let listOfMovies = [];
+        if (movies) {
         movies.forEach(movie => {
             if (movie.Type === "movie") {
                 listOfMovies.push(movie);
             }
         });
         return listOfMovies;
+    }
+    return movies;
     }
 
     submit(e) {
