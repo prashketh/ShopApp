@@ -76,7 +76,7 @@ class SearchBar extends Component {
                 </form>
                 {/* Displays movies and nominations list */}
                 <div class="d-flex flex-row pt-2 change-width">
-                    <DisplayMovies searchTerm={this.state.finalTerm} movies={this.state.movies} lowerCaseSearch={this.state.finalTerm.toLowerCase()} isLoading={this.state.loading} />
+                    <DisplayMovies searchTerm={this.state.finalTerm} movies={this.state.movies} isLoading={this.state.loading} />
                 </div>
             </div>
         )
