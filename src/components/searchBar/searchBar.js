@@ -25,6 +25,7 @@ class SearchBar extends Component {
     }
 
     changeFinalTerm() {
+        // Sets state of finalTerm to the search term
         this.setState({ finalTerm: this.state.searchTerm });
     }
 
@@ -47,6 +48,7 @@ class SearchBar extends Component {
         return (
             <div class="d-flex flex-column p-3 change-width">
                 <h1 class="header-color">The Shoppies</h1>
+                {/* Search Form */}
                 <form class="d-flex flex-column card p-2" onSubmit={this.submit}>
                     <div class="pl-3 pt-3 pr-3">
                         <h5>Movie title</h5>
@@ -61,6 +63,7 @@ class SearchBar extends Component {
                         <small>Press ENTER or click the search button to find a movie</small>
                     </div>
                 </form>
+                {/* Displays movies and nominations list */}
                 <div class="d-flex flex-row pt-2 change-width">
                     <DisplayMovies searchTerm={this.state.finalTerm} movies={this.state.movies} lowerCaseSearch={this.state.finalTerm.toLowerCase()} isLoading={this.state.loading} />
                 </div>
