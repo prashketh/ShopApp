@@ -19,8 +19,6 @@ class DisplayMovies extends Component {
         }
         this.handleNomChange = this.handleNomChange.bind(this);
         this.handleNomRemove = this.handleNomRemove.bind(this);
-        this.handleToggle = this.handleToggle.bind(this);
-        this.handleClearNoms = this.handleClearNoms.bind(this);
     }
 
     handleNomChange(event) {
