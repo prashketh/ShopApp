@@ -128,14 +128,14 @@ class DisplayMovies extends Component {
                                             <li class="list-group-item list-group-item-light">
                                                 <form class="d-flex flex-column m-1">
                                                     <h6>{movie.Title} ({movie.Year})</h6>
-                                                    {this.state.showPoster ? <img alt={movie.Title} src={movie.Poster} /> : null}
+                                                    {this.state.showPoster ? <img alt="" src={movie.Poster} /> : null}
                                                     <button type="button" class="btn btn-secondary btn-set-width mt-2" disabled={true}>Nominate</button>
                                                 </form>
                                             </li> :
                                             <li class="list-group-item list-group-item-light">
                                                 <form class="d-flex flex-column m-1">
                                                     <h6>{movie.Title} ({movie.Year})</h6>
-                                                    {this.state.showPoster ? <img alt={movie.Title} src={movie.Poster} /> : null}
+                                                    {this.state.showPoster ? <img alt="" src={movie.Poster} /> : null}
                                                     <button type="button" class="btn btn-secondary btn-set-width mt-2" id={movie.imdbID} value={movie.Title + " (" + movie.Year + ")"} onClick={this.handleNomChange}>Nominate</button>
                                                 </form>
                                             </li>
