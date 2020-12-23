@@ -29,6 +29,17 @@ class SearchBar extends Component {
         this.setState({ finalTerm: this.state.searchTerm });
     }
 
+    getMoviesOnly(movies) {
+        // Shows only movies
+        let listOfMovies = [];
+        movies.forEach(movie => {
+            if (movie.Type === "movie") {
+                listOfMovies.push(movie);
+            }
+        });
+        return listOfMovies;
+    }
+
     submit(e) {
         e.preventDefault(); // prevents the refresh on key enter
         this.changeFinalTerm();
@@ -36,7 +47,7 @@ class SearchBar extends Component {
         fetch(`https://www.omdbapi.com/?s=${this.state.searchTerm}&apikey=${APIkey}`)
             .then(resp => resp.json())
             .then(response => {
-                this.setState({ loading: false, movies: response.Search });
+                this.setState({ loading: false, movies: this.getMoviesOnly(response.Search) });
             })
             .catch((error) =>
                 console.log(error)
