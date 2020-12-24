@@ -24,11 +24,6 @@ class SearchBar extends Component {
         this.setState({ searchTerm: event.target.value });
     }
 
-    changeFinalTerm() {
-        // Sets state of finalTerm to the search term
-        this.setState({ finalTerm: this.state.searchTerm });
-    }
-
     getMoviesOnly(movies) {
         // Shows only movies
         let listOfMovies = [];
@@ -45,14 +40,12 @@ class SearchBar extends Component {
 
     submit(e) {
         e.preventDefault(); // prevents the refresh on key enter
-        this.setState({ searchTerm: this.state.searchTerm.trim() });
-        this.changeFinalTerm();
-        this.setState({ loading: true, movies: null });
-        fetch(`https://www.omdbapi.com/?s=${this.state.searchTerm}&apikey=${APIkey}`)
+        let trimSearch = this.state.searchTerm.trim();
+        this.setState({ searchTerm: trimSearch, finalTerm: trimSearch, loading: true, movies: null });
+        fetch(`https://www.omdbapi.com/?s=${trimSearch}&apikey=${APIkey}`)
             .then(resp => resp.json())
             .then(response => {
-                this.setState({ searchTerm: '' })
-                this.setState({ loading: false, movies: this.getMoviesOnly(response.Search) });
+                this.setState({ loading: false, movies: this.getMoviesOnly(response.Search), searchTerm: '' });
             })
             .catch((error) =>
                 console.log(error)
