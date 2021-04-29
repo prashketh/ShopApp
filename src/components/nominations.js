@@ -2,7 +2,7 @@ import {
 	Box,
 	Card,
 	CardContent,
-	CardMedia,
+	Button,
 	Typography,
 	IconButton,
 	Link,
@@ -104,7 +104,12 @@ const _renderResults = (movies, removeNomination) => {
 	}
 }
 
-export default function Nominations({ movies, onRemove, ...props }) {
+export default function Nominations({
+	movies,
+	onRemove,
+	setSaveForLater,
+	...props
+}) {
 	const classes = useStyles(props)
 
 	const removeNomination = (movie) => {
@@ -115,7 +120,16 @@ export default function Nominations({ movies, onRemove, ...props }) {
 		<Box display='flex' flexDirection='column'>
 			<Box className={classes.title}>
 				<Typography variant='h6'>Nominations</Typography>
-				<Typography variant='subtitle1'>{movies.length}/5</Typography>
+				<Box display='flex' flexDirection='row' alignItems='center'>
+					{movies.length > 0 && (
+						<Box mr={1}>
+							<Button onClick={() => setSaveForLater(true)}>
+								Save for later
+							</Button>
+						</Box>
+					)}
+					<Typography variant='subtitle1'>{movies.length}/5</Typography>
+				</Box>
 			</Box>
 			{movies && _renderResults(movies, removeNomination)}
 		</Box>

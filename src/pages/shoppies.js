@@ -74,6 +74,7 @@ export default function Shoppies({ ...props }) {
 	const [nominations, setNominations] = useState([])
 	const [loading, setLoading] = useState(false)
 	const [limitReached, setLimitReached] = useState(false)
+	const [saveForLater, setSaveForLater] = useState(false)
 
 	const checkIfIDExists = (movie) => {
 		return nominations.some((item) => item.imdbID === movie.imdbID)
@@ -95,6 +96,20 @@ export default function Shoppies({ ...props }) {
 			setLimitReached(true)
 		}
 	}, [nominations])
+
+	useEffect(() => {
+		if (movies.length > 0) {
+			window.localStorage.setItem('nominations', JSON.stringify(nominations))
+			setSaveForLater(false)
+		}
+	}, [saveForLater])
+
+	useEffect(() => {
+		if (window.localStorage.getItem('nominations')) {
+			console.log(window.localStorage.getItem('nominations'))
+			setNominations(JSON.parse(window.localStorage.getItem('nominations')))
+		}
+	}, [])
 
 	return (
 		<Container maxWidth='md' className={classes.root}>
@@ -138,7 +153,11 @@ export default function Shoppies({ ...props }) {
 				<Grid item container xs={12} md={6}>
 					<Grid item xs={12}>
 						<Box className={classes.nominationsContainer}>
-							<Nominations onRemove={removeNomination} movies={nominations} />
+							<Nominations
+								onRemove={removeNomination}
+								movies={nominations}
+								setSaveForLater={setSaveForLater}
+							/>
 						</Box>
 					</Grid>
 				</Grid>
