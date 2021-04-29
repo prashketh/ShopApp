@@ -12,6 +12,7 @@ import {
 	Backdrop,
 	Fade,
 	Snackbar,
+	SnackbarContent,
 } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
@@ -86,7 +87,6 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(2, 4, 3),
 	},
 	popUp: {
-		marginBottom: theme.spacing(2),
 		[theme.breakpoints.up('md')]: {
 			display: 'none',
 		},
@@ -192,8 +192,15 @@ export default function Shoppies({ ...props }) {
 				open={state.open}
 				onClose={handleClosePopUp}
 				TransitionComponent={state.Transition}
-				message='Nomination limit (5) reached'
-			/>
+			>
+				<SnackbarContent
+					style={{
+						backgroundColor: '#5da2d5',
+						color: 'white',
+					}}
+					message='Nomination limit (5) reached'
+				/>
+			</Snackbar>
 			<Grid container>
 				<Grid item container xs={12} md={6} className={classes.mainContainer}>
 					<Grid item xs={12} className={classes.title}>
