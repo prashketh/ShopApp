@@ -48,7 +48,7 @@ Improvements to design and functionality are allowed to be added in order to hig
 
 - Designed application to be responsive and functional (Mobile + Desktop)
 
-![submit nominations](./readme_assets/mobile.jpg)
+![submit nominations](./readme_assets/mobile.jpg =100x20)
 
 - Added pop-up banner for mobile view that occurs when 5 movies have been nominated
 - Added ability to save nominations for later (appears after at least 1 movie has been nominated)
