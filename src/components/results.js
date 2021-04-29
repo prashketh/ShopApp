@@ -13,7 +13,7 @@ import {
 	Select,
 } from '@material-ui/core'
 
-import { Add, Language } from '@material-ui/icons'
+import { AddCircleOutline } from '@material-ui/icons'
 import Loading from '../images/loading.gif'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -58,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
 		paddingRight: theme.spacing(1),
 	},
 	addIcon: {
-		height: 25,
-		width: 25,
+		height: 30,
+		width: 30,
 	},
 	linkIcon: {
 		height: 15,
@@ -127,7 +127,7 @@ const _renderResults = (
 									disabled={checkIfIDExists(movie)}
 									onClick={() => addNomination(movie)}
 								>
-									<Add className={classes.addIcon} />
+									<AddCircleOutline className={classes.addIcon} />
 								</IconButton>
 							</Box>
 						</Box>
@@ -162,7 +162,11 @@ export default function Results({
 		<Box display='flex' flexDirection='column' alignItems='center'>
 			<Box className={classes.title}>
 				<Typography variant='h6'>Results</Typography>
-				<FormControl variant='outlined' className={classes.formControl}>
+				<FormControl
+					variant='outlined'
+					className={classes.formControl}
+					disabled={limitReached}
+				>
 					<InputLabel>Max</InputLabel>
 					<Select
 						value={max}

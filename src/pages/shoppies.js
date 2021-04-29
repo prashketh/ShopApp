@@ -112,8 +112,8 @@ export default function Shoppies({ ...props }) {
 						>
 							<Box maxWidth='85%' textAlign='center' pt={2} color='white'>
 								<Typography variant='subtitle1'>
-									<b>Tip: </b>Search and choose upto 5 of your favourite movies.
-									Hit submit when you're happy with the choices.
+									<b>Tip: </b>Search and choose your top 5 favourite movies. Hit
+									submit when you're happy with the choices.
 								</Typography>
 							</Box>
 						</Box>
