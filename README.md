@@ -2,9 +2,11 @@
 
 ![example of page](./readme_assets/modified.PNG)
 
-## The Shoppies
+# The Shoppies
 
-# Table of Contents
+Created a responsive web app that enables users to nominate their 5 favourite movies for The Shoppies
+
+## Table of Contents
 
 - [Challenge](#Challenge)
 - [Tech Used](#Tech-Used)
@@ -39,3 +41,7 @@ Improvements to design and functionality are allowed to be added in order to hig
 - MaterialUI Icons
 - Netlify
 - LocalStorage
+
+---
+
+## Features
