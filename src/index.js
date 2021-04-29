@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import SearchBar from './components/searchBar/searchBar'
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { ThemeProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import theme from './theme'
+import Shoppies from './pages/shoppies'
 
 ReactDOM.render(
   <React.StrictMode>
-    <SearchBar />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Shoppies />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
