@@ -7,6 +7,10 @@ import {
 	Typography,
 	IconButton,
 	Link,
+	FormControl,
+	MenuItem,
+	InputLabel,
+	Select,
 } from '@material-ui/core'
 
 import { Add, Language } from '@material-ui/icons'
@@ -17,6 +21,17 @@ const useStyles = makeStyles((theme) => ({
 	title: {
 		width: '100%',
 		padding: theme.spacing(2),
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+	},
+	formControl: {
+		margin: theme.spacing(1),
+		width: 80,
+	},
+	formSelect: {
+		height: 40,
 	},
 	resultRoot: {
 		display: 'flex',
@@ -68,7 +83,8 @@ const _renderResults = (
 	addNomination,
 	checkIfIDExists,
 	loading,
-	limitReached
+	limitReached,
+	max
 ) => {
 	const classes = useStyles()
 
@@ -81,40 +97,43 @@ const _renderResults = (
 			</Card>
 		)
 	} else {
-		return movies.map((movie, i) => (
-			<Card className={classes.resultRoot} key={i}>
-				<Box className={classes.details}>
-					<Box>
-						<CardContent className={classes.content}>
-							<Typography component='h6' variant='h6'>
-								{movie.Title}
-							</Typography>
-							<Typography
-								variant='subtitle1'
-								color='textSecondary'
-								className={classes.subtitle}
-							>
-								{movie.Year}
-							</Typography>
-							<Link
-								color='inherit'
-								href={`https://www.imdb.com/title/${movie.imdbID}`}
-							>
-								More info &#x3e;
-							</Link>
-						</CardContent>
-					</Box>
-					<Box className={classes.controls}>
-						<IconButton
-							disabled={checkIfIDExists(movie)}
-							onClick={() => addNomination(movie)}
-						>
-							<Add className={classes.addIcon} />
-						</IconButton>
-					</Box>
-				</Box>
-			</Card>
-		))
+		return movies.map(
+			(movie, i) =>
+				i < max && (
+					<Card className={classes.resultRoot} key={i}>
+						<Box className={classes.details}>
+							<Box>
+								<CardContent className={classes.content}>
+									<Typography component='h6' variant='h6'>
+										{movie.Title}
+									</Typography>
+									<Typography
+										variant='subtitle1'
+										color='textSecondary'
+										className={classes.subtitle}
+									>
+										{movie.Year}
+									</Typography>
+									<Link
+										color='inherit'
+										href={`https://www.imdb.com/title/${movie.imdbID}`}
+									>
+										More info &#x3e;
+									</Link>
+								</CardContent>
+							</Box>
+							<Box className={classes.controls}>
+								<IconButton
+									disabled={checkIfIDExists(movie)}
+									onClick={() => addNomination(movie)}
+								>
+									<Add className={classes.addIcon} />
+								</IconButton>
+							</Box>
+						</Box>
+					</Card>
+				)
+		)
 	}
 }
 
@@ -129,6 +148,12 @@ export default function Results({
 }) {
 	const classes = useStyles(props)
 
+	const [max, setMax] = React.useState(3)
+
+	const handleChange = (event) => {
+		setMax(event.target.value)
+	}
+
 	const addNomination = (movie) => {
 		onAdd(movie)
 	}
@@ -137,6 +162,19 @@ export default function Results({
 		<Box display='flex' flexDirection='column' alignItems='center'>
 			<Box className={classes.title}>
 				<Typography variant='h6'>Results</Typography>
+				<FormControl variant='outlined' className={classes.formControl}>
+					<InputLabel>Max</InputLabel>
+					<Select
+						value={max}
+						onChange={handleChange}
+						label='Max'
+						className={classes.formSelect}
+					>
+						<MenuItem value={3}>3</MenuItem>
+						<MenuItem value={5}>5</MenuItem>
+						<MenuItem value={7}>7</MenuItem>
+					</Select>
+				</FormControl>
 			</Box>
 			{movies &&
 				_renderResults(
@@ -144,7 +182,8 @@ export default function Results({
 					addNomination,
 					checkIfIDExists,
 					loading,
-					limitReached
+					limitReached,
+					max
 				)}
 		</Box>
 	)

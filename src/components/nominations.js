@@ -53,24 +53,6 @@ const useStyles = makeStyles((theme) => ({
 const _renderResults = (movies, removeNomination) => {
 	const classes = useStyles()
 	return movies.map((movie, i) => (
-		// <Card className={classes.resultRoot} key={i}>
-		// 	<div className={classes.details}>
-		// 		<CardContent className={classes.content}>
-		// 			<Typography component='h6' variant='h6'>
-		// 				{movie.Title}
-		// 			</Typography>
-		// 			<Typography variant='subtitle1' color='textSecondary'>
-		// 				{movie.Year}
-		// 			</Typography>
-		// 		</CardContent>
-		// <div className={classes.controls}>
-		// 	<IconButton onClick={() => removeNomination(movie)}>
-		// 		<Add className={classes.addIcon} />
-		// 	</IconButton>
-		// </div>
-		// 	</div>
-		// 	<CardMedia className={classes.cover} image={movie.Poster} />
-		// </Card>
 		<Card className={classes.resultRoot} key={i}>
 			<Box className={classes.details}>
 				<Box>
