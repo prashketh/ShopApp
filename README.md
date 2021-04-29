@@ -4,7 +4,7 @@ Created a responsive web app in React that enables users to nominate their 5 fav
 
 ![example of page](./readme_assets/modified.PNG)
 
-## Hosted at (https://prashkethshopify.netlify.app/)
+# Hosted at (https://prashkethshopify.netlify.app/)
 
 ## Table of Contents
 
