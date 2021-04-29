@@ -58,3 +58,4 @@ Improvements to design and functionality are allowed to be added in order to hig
 
 - Added loading wheel that appears briefly after each search request
 - Users are able to limit the amount of search results that are shown
+- Users can view more information about a title by clicking the More Info link for each movie
