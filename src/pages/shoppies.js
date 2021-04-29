@@ -87,6 +87,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(2, 4, 3),
 	},
 	popUp: {
+		marginBottom: theme.spacing(2),
 		[theme.breakpoints.up('md')]: {
 			display: 'none',
 		},
@@ -195,10 +196,10 @@ export default function Shoppies({ ...props }) {
 			>
 				<SnackbarContent
 					style={{
-						backgroundColor: '#5da2d5',
-						color: 'white',
+						backgroundColor: '#f3d250',
+						color: 'black',
 					}}
-					message='Nomination limit (5) reached'
+					message='Warning: Nomination limit (5) reached'
 				/>
 			</Snackbar>
 			<Grid container>
