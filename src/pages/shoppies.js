@@ -158,7 +158,7 @@ export default function Shoppies({ ...props }) {
 				<Fade in={open}>
 					<div className={classes.paper}>
 						<h2>Great picks!</h2>
-						<p>Your nominations successfully submitted</p>
+						<p>Your nominations were successfully submitted</p>
 					</div>
 				</Fade>
 			</Modal>
