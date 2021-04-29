@@ -86,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(2, 4, 3),
 	},
 	popUp: {
+		marginBottom: theme.spacing(2),
 		[theme.breakpoints.up('md')]: {
 			display: 'none',
 		},
