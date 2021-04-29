@@ -47,10 +47,11 @@ Improvements to design and functionality are allowed to be added in order to hig
 ## Features
 
 - Designed application to be responsive and functional (Mobile + Desktop)
-- Added pop-up banner for mobile view
-
-![example of mobile view](./readme_assets/mobile.PNG)
-
+- Added pop-up banner for mobile view that occurs when 5 movies have been nominated
 - Added ability to save nominations for later (appears after at least 1 movie has been nominated)
 - Users are able to submit nominations once 5 movies have been selected
+
+![submit nominations](./readme_assets/limit.PNG)
+
 - Added loading wheel that appears briefly after each search request
+- Users are able to limit the amount of search results that are shown
