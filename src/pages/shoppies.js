@@ -11,6 +11,7 @@ import {
 	Modal,
 	Backdrop,
 	Fade,
+	Snackbar,
 } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
@@ -84,6 +85,11 @@ const useStyles = makeStyles((theme) => ({
 		boxShadow: theme.shadows[5],
 		padding: theme.spacing(2, 4, 3),
 	},
+	popUp: {
+		[theme.breakpoints.up('md')]: {
+			display: 'none',
+		},
+	},
 }))
 
 export default function Shoppies({ ...props }) {
@@ -95,6 +101,10 @@ export default function Shoppies({ ...props }) {
 	const [limitReached, setLimitReached] = useState(false)
 	const [saveForLater, setSaveForLater] = useState(false)
 	const [open, setOpen] = useState(false)
+	const [state, setState] = useState({
+		open: false,
+		Transition: Fade,
+	})
 
 	const handleOpen = () => {
 		setOpen(true)
@@ -123,9 +133,23 @@ export default function Shoppies({ ...props }) {
 		setLimitReached(false)
 	}
 
+	const handleClosePopUp = () => {
+		setState({
+			...state,
+			open: false,
+		})
+	}
+
 	useEffect(() => {
 		if (nominations.length >= 5) {
 			setLimitReached(true)
+			setState({
+				open: true,
+			})
+		} else {
+			setState({
+				open: false,
+			})
 		}
 	}, [nominations])
 
@@ -162,6 +186,13 @@ export default function Shoppies({ ...props }) {
 					</div>
 				</Fade>
 			</Modal>
+			<Snackbar
+				className={classes.popUp}
+				open={state.open}
+				onClose={handleClosePopUp}
+				TransitionComponent={state.Transition}
+				message='Nomination limit (5) reached'
+			/>
 			<Grid container>
 				<Grid item container xs={12} md={6} className={classes.mainContainer}>
 					<Grid item xs={12} className={classes.title}>
