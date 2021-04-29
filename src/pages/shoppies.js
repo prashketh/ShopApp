@@ -3,7 +3,15 @@ import { makeStyles } from '@material-ui/core/styles'
 import SearchBox from '../components/searchbox'
 import Nominations from '../components/nominations'
 import Results from '../components/results'
-import { Container, Box, Grid, Typography } from '@material-ui/core'
+import {
+	Container,
+	Box,
+	Grid,
+	Typography,
+	Modal,
+	Backdrop,
+	Fade,
+} from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -61,9 +69,20 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		flexDirection: 'row',
 	},
-	test: {
+	mainContainer: {
 		minHeight: '100%',
 		display: 'block',
+	},
+	modal: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	paper: {
+		backgroundColor: theme.palette.background.paper,
+		borderRadius: 6,
+		boxShadow: theme.shadows[5],
+		padding: theme.spacing(2, 4, 3),
 	},
 }))
 
@@ -75,6 +94,19 @@ export default function Shoppies({ ...props }) {
 	const [loading, setLoading] = useState(false)
 	const [limitReached, setLimitReached] = useState(false)
 	const [saveForLater, setSaveForLater] = useState(false)
+	const [open, setOpen] = useState(false)
+
+	const handleOpen = () => {
+		setOpen(true)
+	}
+
+	const handleClose = () => {
+		setOpen(false)
+		setNominations([])
+		setMovies([0])
+		setLimitReached(false)
+		window.localStorage.clear()
+	}
 
 	const checkIfIDExists = (movie) => {
 		return nominations.some((item) => item.imdbID === movie.imdbID)
@@ -106,15 +138,32 @@ export default function Shoppies({ ...props }) {
 
 	useEffect(() => {
 		if (window.localStorage.getItem('nominations')) {
-			console.log(window.localStorage.getItem('nominations'))
 			setNominations(JSON.parse(window.localStorage.getItem('nominations')))
 		}
+		setMovies([0])
 	}, [])
 
 	return (
 		<Container maxWidth='md' className={classes.root}>
+			<Modal
+				className={classes.modal}
+				open={open}
+				onClose={handleClose}
+				closeAfterTransition
+				BackdropComponent={Backdrop}
+				BackdropProps={{
+					timeout: 500,
+				}}
+			>
+				<Fade in={open}>
+					<div className={classes.paper}>
+						<h2>Great picks!</h2>
+						<p>Your nominations successfully submitted</p>
+					</div>
+				</Fade>
+			</Modal>
 			<Grid container>
-				<Grid item container xs={12} md={6} className={classes.test}>
+				<Grid item container xs={12} md={6} className={classes.mainContainer}>
 					<Grid item xs={12} className={classes.title}>
 						<Typography variant='h4'>The Shoppies</Typography>
 					</Grid>
@@ -147,6 +196,7 @@ export default function Shoppies({ ...props }) {
 							checkIfIDExists={checkIfIDExists}
 							loading={loading}
 							limitReached={limitReached}
+							onSubmit={handleOpen}
 						/>
 					</Grid>
 				</Grid>

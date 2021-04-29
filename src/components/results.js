@@ -3,7 +3,7 @@ import {
 	Box,
 	Card,
 	CardContent,
-	CardMedia,
+	Button,
 	Typography,
 	IconButton,
 	Link,
@@ -76,6 +76,16 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: 'center',
 		width: '95%',
 	},
+	limitCard: {
+		display: 'flex',
+		margin: theme.spacing(1),
+		padding: theme.spacing(1),
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: '95%',
+		textAlign: 'center',
+	},
 }))
 
 const _renderResults = (
@@ -84,16 +94,43 @@ const _renderResults = (
 	checkIfIDExists,
 	loading,
 	limitReached,
-	max
+	max,
+	onSubmit
 ) => {
 	const classes = useStyles()
 
 	if (limitReached) {
-		return <Card className={classes.loadingCard}>Limit reached (IN DEV)</Card>
+		return (
+			<Card className={classes.limitCard}>
+				<Typography variant='subtitle1' color='error'>
+					<b>Limit reached</b>
+				</Typography>
+				<Typography variant='subtitle1'>
+					To submit your nominations hit the button below
+				</Typography>
+				<Box m={1}>
+					<Button
+						variant='outlined'
+						color='secondary'
+						onClick={() => onSubmit()}
+					>
+						Submit Nominations
+					</Button>
+				</Box>
+			</Card>
+		)
 	} else if (loading) {
 		return (
 			<Card className={classes.loadingCard}>
 				<img className={classes.loading} src={Loading} />
+			</Card>
+		)
+	} else if (movies.length < 1) {
+		return <Card className={classes.loadingCard}>No results were found</Card>
+	} else if (movies[0] === 0) {
+		return (
+			<Card className={classes.loadingCard}>
+				Need inspiration? Try searching 'Star Wars'
 			</Card>
 		)
 	} else {
@@ -144,6 +181,7 @@ export default function Results({
 	loading,
 	limitReached,
 	searchTerm,
+	onSubmit,
 	...props
 }) {
 	const classes = useStyles(props)
@@ -187,7 +225,8 @@ export default function Results({
 					checkIfIDExists,
 					loading,
 					limitReached,
-					max
+					max,
+					onSubmit
 				)}
 		</Box>
 	)
