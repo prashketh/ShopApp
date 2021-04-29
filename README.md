@@ -1,10 +1,10 @@
-## Hosted at (https://prashkethshopify.netlify.app/)
-
 ![example of page](./readme_assets/modified.PNG)
 
 # The Shoppies
 
 Created a responsive web app in React that enables users to nominate their 5 favourite movies for The Shoppies!
+
+## Hosted at (https://prashkethshopify.netlify.app/)
 
 ## Table of Contents
 
