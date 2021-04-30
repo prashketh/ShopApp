@@ -86,6 +86,12 @@ const useStyles = makeStyles((theme) => ({
 		width: '95%',
 		textAlign: 'center',
 	},
+	submitButton: {
+		backgroundColor: '#5da2d5',
+		'&:hover': {
+			backgroundColor: '#90ccf4',
+		},
+	},
 }))
 
 const _renderResults = (
@@ -110,9 +116,10 @@ const _renderResults = (
 				</Typography>
 				<Box m={1}>
 					<Button
-						variant='outlined'
-						color='secondary'
+						variant='contained'
+						color='primary'
 						onClick={() => onSubmit()}
+						className={classes.submitButton}
 					>
 						Submit Nominations
 					</Button>
