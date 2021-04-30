@@ -67,10 +67,6 @@ const useStyles = makeStyles((theme) => ({
 			marginTop: theme.spacing(9),
 		},
 	},
-	cardsContainer: {
-		display: 'flex',
-		flexDirection: 'row',
-	},
 	mainContainer: {
 		minHeight: '100%',
 		display: 'block',

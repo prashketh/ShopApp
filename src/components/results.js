@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
 	Box,
 	Card,
@@ -48,9 +48,6 @@ const useStyles = makeStyles((theme) => ({
 	content: {
 		flex: '1 0 auto',
 	},
-	cover: {
-		width: '50%',
-	},
 	controls: {
 		display: 'flex',
 		alignItems: 'center',
@@ -60,10 +57,6 @@ const useStyles = makeStyles((theme) => ({
 	addIcon: {
 		height: 30,
 		width: 30,
-	},
-	linkIcon: {
-		height: 15,
-		width: 15,
 	},
 	loading: {
 		height: 70,

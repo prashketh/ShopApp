@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Box, Paper, InputBase, IconButton } from '@material-ui/core'
+import React, { useState } from 'react'
+import { Paper, InputBase, IconButton } from '@material-ui/core'
 import { Search } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -32,7 +32,6 @@ export default function SearchBox({
 	const [searchTerm, setSearchTerm] = useState('')
 
 	const getMoviesOnly = (movies) => {
-		// Shows only movies
 		let listOfMovies = []
 		if (movies) {
 			movies.forEach((movie) => {
